@@ -9,16 +9,20 @@ const action = ['-', '+', 'X', '/'];
 // экран 
 const out = document.querySelector('.calc-screen p');
 
+// Функция очистки
+
 function clearAll () {
-    a = ''; // first number and result
-    b = ''; // second number 
-    sign = ''; // знак
+    a = ''; //
+    b = '';
+    sign = ''; 
     finish = false;
-    out.textContent = 0;
+    out.textContent = 0;  // выводим 0
 }
+//  Навешиваю оброботчик событий на кнопку  AC,
 
-document.querySelector('.ac').onclick = clearAll;
+document.querySelector('.ac').onclick = clearAll; 
 
+// Навешиваем оброботчик событий на кнопки нашего Diva
 document.querySelector('.buttons').onclick = (event) => {
     // нажата не кнопка
     if(!event.target.classList.contains('btn')) return;
@@ -26,26 +30,24 @@ document.querySelector('.buttons').onclick = (event) => {
     if(event.target.classList.contains('ac')) return;
 
     out.textContent = '';
-    // получаю нажатую кнопку
+    // получаю содержание нажатой кнопки
     const key = event.target.textContent;
 
     // если нажата клавиша 0-9 или .
     if (digit.includes(key)) {
         if (b ==='' && sign === '') {
             a += key;
-            
-            out.textContent = a;
+            out.textContent = a;  // Если Б пустая и  знак пустой то заполняем А
         }
         else if (a!=='' && b!=='' && finish) {
             b = key;
             finish = false;
-            out.textContent = b;
+            out.textContent = b; //  Если А не пустая и Б не пустая и финиш тру  заполняем Б
         }
         else {
             b += key;
-            out.textContent = b;
+            out.textContent = b;//заполняем Б
         }
-        console.table(a, b , sign);
         return;
     }
 
@@ -53,11 +55,10 @@ document.querySelector('.buttons').onclick = (event) => {
      if (action.includes(key)) {
         sign = key;
         out.textContent = sign;
-        console.table(a, b , sign);
         return;
     }
 
-    // нажата =
+    // если нажата клавиша =
     if (key === '=') {
         if (b ==='') b = a;
         switch (sign) {
@@ -72,7 +73,7 @@ document.querySelector('.buttons').onclick = (event) => {
                 break;
             case "/":
                 if (b === '0') {
-                    out.textContent = 'ПУТИН ХУЙЛО';
+                    out.textContent = 'ПУТИН ХУЙЛО'; // проверка деления на 0
                     a = '';
                     b = '';
                     sign = '';
@@ -83,7 +84,29 @@ document.querySelector('.buttons').onclick = (event) => {
         }
         finish = true;
         out.textContent = a;
-        console.table(a, b , sign);
     }
 
+}
+// Навешиваю оброботчик событий на кнопку delete при промощи свойства onclick и стреорчной функции
+document.querySelector('.delete').onclick = () => {
+    if (finish) {
+    // если финиш тру  то очищаем экран
+        clearAll();
+        return;
+    }
+// Проверка второго числа на пустоту, если != "" то  при помощи метода slice() возвращаем  новый масив -1 элемент
+if (b !== '') {
+        b = b.slice(0, -1);
+        out.textContent = b;
+        
+}
+// Проверка второго числа на пустоту, если != "" то  при помощи метода slice() возвращаем  новый масив -1 элемент
+if (b !== '') {
+    } else if (sign !== '') {
+        sign = '';
+        out.textContent = a;
+    } else if (a !== '') {
+        a = a.slice(0, -1);
+        out.textContent = a;
+    }
 }

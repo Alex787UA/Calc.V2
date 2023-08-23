@@ -75,6 +75,9 @@
 .bg-grey {
     background-color: #a6a6a6;
 }
+.btn-bg-bg {
+    background-color: #0000;
+}
 
 .bg-dark-grey {
     background-color: #333;
@@ -85,7 +88,7 @@
 }
 
 .btn.ac {
-    
+    background-color: #ff0101;
 }
 
 .btn.plus-minus {
