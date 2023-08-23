@@ -3,6 +3,7 @@ let b = ''; // secont number
 let sign = ''; // знак операции
 let finish  = false;
 
+// Создаем два масива  для проверки содержания кнопки
 const digit = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '.'];
 const action = ['-', '+', 'X', '/'];
 
@@ -10,7 +11,6 @@ const action = ['-', '+', 'X', '/'];
 const out = document.querySelector('.calc-screen p');
 
 // Функция очистки
-
 function clearAll () {
     a = ''; //
     b = '';
@@ -19,7 +19,6 @@ function clearAll () {
     out.textContent = 0;  // выводим 0
 }
 //  Навешиваю оброботчик событий на кнопку  AC,
-
 document.querySelector('.ac').onclick = clearAll; 
 
 // Навешиваем оброботчик событий на кнопки нашего Diva
