@@ -1,5 +1,6 @@
 let a = ''; // first number
 let b = ''; // secont number
+// let c = '' // Хочу создать переменную в которую дудет  помещаться результат 
 let sign = ''; // знак операции
 let finish  = false;
 
@@ -14,10 +15,22 @@ const out = document.querySelector('.calc-screen p');
 function clearAll () {
     a = ''; //
     b = '';
+    
     sign = ''; 
     finish = false;
     out.textContent = 0;  // выводим 0
+
+   
 }
+function limiter(value, size) {
+    if (value.length > size) {
+        return value.substring(0, size);
+    } else {
+        return value;
+    }
+}
+
+
 //  Навешиваю оброботчик событий на кнопку  AC,
 document.querySelector('.ac').onclick = clearAll; 
 
@@ -82,8 +95,12 @@ document.querySelector('.buttons').onclick = (event) => {
                 break;
         }
         finish = true;
-        out.textContent = a;
+        out.textContent = a
+        out.textContent = limiter(out.textContent, 8); // 16 - максимальная длина для примера
+    // ...
     }
+    
+
 
 }
 // Навешиваю оброботчик событий на кнопку delete при промощи свойства onclick и стреорчной функции
@@ -106,6 +123,6 @@ if (b !== '') {
         out.textContent = a;
     } else if (a !== '') {
         a = a.slice(0, -1);
-        out.textContent = a;
+        out.textContent = a
     }
 }

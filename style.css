@@ -19,6 +19,7 @@
     display: grid;
     padding: 18px;
     box-shadow: 4px 4px 6px #4f4f4f;
+    
 }
 
 .calc-screen {
@@ -29,6 +30,7 @@
     display: grid;
     justify-items: end;
     align-items: end;
+    overflow: hidden;
 }
 
 .calc-screen p {
